@@ -1,14 +1,30 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Description",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Andre Grech",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.16.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AGr2020Xman/Note-Taker.git"
+  },
+  "keywords": [
+    "express",
+    "nodemon"
+  ],
+  "bugs": {
+    "url": "https://github.com/AGr2020Xman/Note-Taker/issues"
+  },
+  "homepage": "https://github.com/AGr2020Xman/Note-Taker#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
