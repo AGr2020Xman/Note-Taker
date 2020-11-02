@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-// psuedo_DB for notes intermediary storage
+// globals
 let notes = [];
 
 // routing
@@ -30,13 +30,34 @@ app.get('*', (req, res) => {
 app.get('/api/notes', (req, res) => res.json('./db/db.json'));
 
 app.post('/api/notes', (req, res) => {
-    let noteToBeSaved = req.body;
+    res.json(req.body);
+});
 
-    notes.push(noteToBeSaved);
-    res.json(noteToBeSaved);
+app.delete('/api/notes/:id', (req, res) => {
+    return res.json(notes.filter((note) => {
+        if (note.id === parseInt(req.params.id)) {
+            notes.splice(note.id,1);
+            fs.writeFile('./db/db.json');            
+        }
+        // not functional - working on it - needs more research
+    }
+    ))
 });
 
 app.listen(PORT, (req, res) => {
     console.log(`App listening on localhost` + `:${PORT}`);
 })
+
+// functions to do tasks
+const getNotes = () => {};
+
+const writeToDatabase = () => {
+    fs.writeFileSync(`${__dirname}/db/db.json`, JSON.stringify(notes), "utf8");
+};
+
+const saveNote = () => {};
+
+const deleteNote = () => {};
+
+const generateNoteId = () => {};
 
