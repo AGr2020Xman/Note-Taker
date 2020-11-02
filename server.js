@@ -1,7 +1,9 @@
 // dependencies
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
+import { v4 as uuidv4 } from 'uuid';
+import express from 'express';
+import fs from 'fs';
+import path from 'path';
+
 
 // express app 
 const app = express();
@@ -57,7 +59,8 @@ const writeToDatabase = () => {
 
 const saveNote = () => {};
 
-const deleteNote = () => {};
+const deleteNote = () => {
+    
+};
 
-const generateNoteId = () => {};
-
+const generateNoteId = () => uuidv4();
