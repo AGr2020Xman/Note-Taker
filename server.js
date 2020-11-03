@@ -31,7 +31,7 @@ app.get('*', (req, res) => {
 
 app.get('/api/notes', (req, res) => res.json(getNotes()));
 
-app.post('/api/notes', (req, res) => res.json(req.body));
+app.post('/api/notes', (req, res) => res.json(saveNote(req.body)));
 
 app.delete('/api/notes/:id', (req, res) => {
     return res.json(deleteNote(req.params.id))
