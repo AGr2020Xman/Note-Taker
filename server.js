@@ -34,14 +34,7 @@ app.get('/api/notes', (req, res) => res.json('./db/db.json'));
 app.post('/api/notes', (req, res) => res.json(req.body));
 
 app.delete('/api/notes/:id', (req, res) => {
-    return res.json(notes.filter((note) => {
-        if (note.id === parseInt(req.params.id)) {
-            notes.splice(note.id,1);
-            fs.writeFile('./db/db.json');            
-        }
-        // not functional - working on it - needs more research
-    }
-    ))
+    return res.json(deleteNote(req.params.id))
 });
 
 app.listen(PORT, (req, res) => {
@@ -51,6 +44,7 @@ app.listen(PORT, (req, res) => {
 // functions to do tasks
 const generateNoteId = () => uuidv4();
 
+//doubles as the DB updater by overwriting
 const writeToDatabase = () => new Promise ((resolve, reject) => {
     fs.writeFileSync(`${__dirname}/db/db.json`, JSON.stringify(notes), "utf8");
 });
@@ -78,7 +72,10 @@ const saveNote = async (body) => {
     return getNotes();
 };
 
-const deleteNote = (id) => {
-    let x = notes.find((note)=>note.id == id)
-    notes.splice(x,1)
+// id from req.params.id
+const deleteNote = async (id) => {
+    let targetNote = notes.find((note)=>note.id == id);
+    notes.splice(targetNote,1);
+    await writeToDatabase();
+    return getNotes();
 };
