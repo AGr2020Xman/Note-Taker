@@ -29,7 +29,7 @@ app.get('*', (req, res) => {
 });
 
 
-app.get('/api/notes', (req, res) => res.json('./db/db.json'));
+app.get('/api/notes', (req, res) => res.json(getNotes()));
 
 app.post('/api/notes', (req, res) => res.json(req.body));
 
