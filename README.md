@@ -1,80 +1,106 @@
-# Unit 11 Express Homework: Note Taker
+# Note Taker
+
+![badge](https://img.shields.io/badge/License-mit-green.svg)<br />
 
 ## Description
 
-Create an application that can be used to write, save, and delete notes. This application will use an express backend and save and retrieve note data from a JSON file.
+Note taking application that can be used to write, save, and delete notes. This application uses an express backend to save and retrieve note data from a JSON file.
 
-* The application frontend has already been created, it's your job to build the backend and connect the two.
+## Contents
 
-* The following HTML routes should be created:
+- [Installation](#installation)
+- [User Story](#user-story)
+- [Usage](#usage)
+- [Demonstration](#demonstration)
+- [Tests](#Tests)
+- [Screenshots](#screenshots)
+- [Questions](<#questions-(FAQ)>)
+- [Contact](#contact)
+- [Author](#authors)
+- [Acknowledgements](#acknowledgements)
 
-  * GET `/notes` - Should return the `notes.html` file.
+## Installation
 
-  * GET `*` - Should return the `index.html` file
+#### To modify:
 
-* The application should have a `db.json` file on the backend that will be used to store and retrieve notes using the `fs` module.
+1. Clone repository
 
-* The following API routes should be created:
+2. Run npm i for dependencies
 
-  * GET `/api/notes` - Should read the `db.json` file and return all saved notes as JSON.
-
-  * POST `/api/notes` - Should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client.
-
-  * DELETE `/api/notes/:id` - Should receive a query parameter containing the id of a note to delete. This means you'll need to find a way to give each note a unique `id` when it's saved. In order to delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
+```
+  npm i
+```
 
 ## User Story
 
-AS A user, I want to be able to write and save notes
+```
+As a user
+I want to keep flexible notes
+So that I have to what I wanted to remember easily and in one place
+```
 
-I WANT to be able to delete notes I've written before
+## Usage
 
-SO THAT I can organize my thoughts and keep track of tasks I need to complete
+Ensure the following are correctly installed (if you have node already, make sure version is up to date):
 
-## Business Context
+- [Node.js](https://nodejs.org/en/)
 
-For users that need to keep track of a lot of information, it's easy to forget or be unable to recall something important. Being able to take persistent notes allows users to have written information available when needed.
+Run npm install for the npm package dependencies before attempting to run locally.
 
-## Acceptance Criteria
+Otherwise, this app is hosted on the [Heroku](https://www.heroku.com) service.
 
-Application should allow users to create and save notes.
+## Demonstration
 
-Application should allow users to view previously saved notes.
+- [Deployed Application](https://radiant-sea-94722.herokuapp.com/)
 
-Application should allow users to delete previously saved notes.
+## Tests
 
-## Deploying the App
+- No included tests for this application.
 
-You will not be able to deploy your server side code on GitHub pages. This app should be deployed on Heroku. Carefully follow the [Heroku Guide](../04-Important/HerokuGuide.md) for getting your app deployed on Heroku.
+## Screenshots
 
-- - -
+_Landing page to get started_
 
-## Commit Early and Often
+![](./public/assets/images/landing.JPG)
 
-One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
+_Default notes page without any notes_
 
-* Your commit history is a signal to employers that you are actively working on projects and learning new skills.
+![](./public/assets/images/nosaved.JPG)
 
-* Your commit history allows you to revert your codebase in the event that you need to return to a previous state.
+_Option to save reveals itself when text is applied_
 
-Follow these guidelines for committing:
+![](./public/assets/images/saveoption.JPG)
 
-* Make single-purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits.
+_Notes save in the sidebar_
 
-* Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history.
+![](./public/assets/images/onesaved.JPG)
 
-* Don't commit half-done work, for the sake of your collaborators (and your future self!).
+_Many notes can be saved_
 
-* Test your application before you commit to ensure functionality at every step in the development process.
+![](./public/assets/images/multiplenote.JPG)
 
-We would like you to have well over 200 commits by graduation, so commit early and often!
+_You can click on previous notes to open them_
 
-## Submission on BCS
+![](./public/assets/images/clickopen.JPG)
 
-You are required to submit the following:
+_You can click the bin icon to remove notes_
 
-* The URL of the deployed application. This should be the link to the url provided by Heroku. Be sure not to submit a link to the Heroku dashboard.
+![](./public/assets/images/deletebuttonremove.JPG)
 
-* The URL of the GitHub repository
+## Questions
 
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+- Submit questions to my contact details below.
+- App is hosted by Heroku.
+
+## Contact
+
+- Contact me with any questions on my email: agre.fun21@gmail.com or silver.grech@gmail.com
+
+## Author
+
+- Initial files to develop by Trilogy Education Services
+- Andr&eacute; Grech - 3/11/2020
+
+### Acknowledgements
+
+- © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
