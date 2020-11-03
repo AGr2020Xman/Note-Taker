@@ -56,7 +56,17 @@ const writeToDatabase = () => new Promise ((resolve, reject) => {
 });
 
 const getNotes = () => {
-    
+    const updateNotes = fs.readFileSync(`${__dirname}/db/db.json`, 'utf8', (err, data) => {
+        if (err) throw err;
+        const updatedNotes = [];
+        let storedNotes = JSON.parse(data);
+        storedNotes.forEach((note)=>{
+            updatedNotes.push(note);
+        });
+        return updatedNotes;
+    });
+    notes = JSON.parse(updateNotes);
+    return notes;
 };
 
 // body from req.body
