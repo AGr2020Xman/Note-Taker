@@ -79,3 +79,10 @@ const deleteNote = async (id) => {
     await writeToDatabase();
     return getNotes();
 };
+
+// initialise notetaker with a getNote()
+const init = () => {
+    getNotes();
+};
+
+init();
