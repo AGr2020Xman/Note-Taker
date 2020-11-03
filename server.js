@@ -1,8 +1,9 @@
 // dependencies
-import { v4 as uuidv4 } from 'uuid';
-import express from 'express';
-import fs from 'fs';
-import path from 'path';
+const express = require('express');
+const { init } = require('./src/tools');
+const path = require('path');
+const apiRoutes = require("./src/routes/apiRoutes");
+const htmlRoutes = require("./src/routes/htmlRoutes");
 
 
 // express app 
@@ -10,79 +11,18 @@ const app = express();
 const PORT = process.env.PORT || 7001;
 
 // static path for css/js BUT NOT html files (in this case)
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 // specify app set up & handle data parse
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-// globals
-let notes = [];
+apiRoutes(app);
+htmlRoutes(app);
 
-// routing
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/notes.html'));
-});
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
-});
-
-
-app.get('/api/notes', (req, res) => res.json(getNotes()));
-
-app.post('/api/notes', (req, res) => res.json(saveNote(req.body)));
-
-app.delete('/api/notes/:id', (req, res) => {
-    return res.json(deleteNote(req.params.id))
-});
-
+// listener
 app.listen(PORT, (req, res) => {
-    console.log(`App listening on localhost` + `:${PORT}`);
+    console.log(`App listening on port ` + `:${PORT}`);
 })
-
-// functions to do tasks
-const generateNoteId = () => uuidv4();
-
-//doubles as the DB updater by overwriting
-const writeToDatabase = () => new Promise ((resolve, reject) => {
-    fs.writeFileSync(`${__dirname}/db/db.json`, JSON.stringify(notes), "utf8");
-});
-
-const getNotes = () => {
-    const updateNotes = fs.readFileSync(`${__dirname}/db/db.json`, 'utf8', (err, data) => {
-        if (err) throw err;
-        const updatedNotes = [];
-        let storedNotes = JSON.parse(data);
-        storedNotes.forEach((note)=>{
-            updatedNotes.push(note);
-        });
-        return updatedNotes;
-    });
-    notes = JSON.parse(updateNotes);
-    return notes;
-};
-
-// body from req.body
-const saveNote = async (body) => {
-    const newNote = body;
-    newNote.id = generateNoteId();
-    notes.push(newNote);
-    await writeToDatabase();
-    return getNotes();
-};
-
-// id from req.params.id
-const deleteNote = async (id) => {
-    let targetNote = notes.find((note)=>note.id == id);
-    notes.splice(targetNote,1);
-    await writeToDatabase();
-    return getNotes();
-};
-
-// initialise notetaker with a getNote()
-const init = () => {
-    getNotes();
-};
 
 init();
